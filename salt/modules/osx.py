@@ -38,42 +38,6 @@ def set_volume(volume):
     return __salt__['cmd.run'](cmd)
 
 
-def launchctl_list():
-    '''
-    Do launchctl list
-    '''
-
-    cmd = 'launchctl list'
-
-    return [line.split("\t") for line in __salt__['cmd.run'](cmd).splitlines()]
-
-
-def launchctl_stop(job_label):
-    '''
-    Do launchctl stop
-
-    @todo: Not working for some reason
-    launchctl stop error: No such process
-    '''
-
-    cmd = 'launchctl stop {0}'.format(job_label)
-
-    return __salt__['cmd.run'](cmd)
-
-
-def launchctl_start(job_label):
-    '''
-    Do launchctl start
-
-    @todo: Not working for some reason
-    launchctl start error: No such process
-    '''
-
-    cmd = 'launchctl start {0}'.format(job_label)
-
-    return __salt__['cmd.run'](cmd)
-
-
 def itunes_pause():
     '''
     Do itunes pause
