@@ -18,6 +18,16 @@ def screensaver():
     return __salt__['cmd.run'](cmd)
 
 
+def lock():
+    '''
+    Lock the screen
+    '''
+
+    cmd = '/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+    return __salt__['cmd.run'](cmd)
+
+
 def set_volume(volume):
     '''
     Set the volume of sound
@@ -36,37 +46,6 @@ def launchctl_list():
     cmd = 'launchctl list'
 
     return [line.split("\t") for line in __salt__['cmd.run'](cmd).splitlines()]
-
-
-def brew_list():
-    '''
-    Do brew list
-    '''
-
-    cmd = 'brew list'
-
-    return __salt__['cmd.run'](cmd).splitlines()
-
-
-def brew_uninstall(formula):
-    '''
-    Do brew uninstall
-    '''
-
-    cmd = '/usr/local/bin/brew uninstall {0}'.format(formula)
-
-    return __salt__['cmd.run'](cmd)
-
-
-def brew_install(formula):
-    '''
-    Do brew install
-    '''
-
-    user = __salt__['file.get_user']('/usr/local')
-    cmd = '/usr/local/bin/brew install {0}'.format(formula)
-
-    return __salt__['cmd.run'](cmd, runas=user)
 
 
 def launchctl_stop(job_label):
